@@ -3,7 +3,11 @@
 class CAgent
 {
 public:
-	CAgent() {};
+	CAgent();
+
+	void Update();
+
+	~CAgent();
 private:
 	
 };
