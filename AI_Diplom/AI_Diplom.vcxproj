@@ -39,6 +39,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>../;/;game/infrastructure;ai_engine/;game/;libs/;$(IncludePath)</IncludePath>
+    <LibraryPath>libs/;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -54,6 +56,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>libs/glut32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -74,13 +77,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ai_engine\engine.cpp" />
     <ClCompile Include="game\agent.cpp" />
     <ClCompile Include="game\game.cpp" />
+    <ClCompile Include="game\game_field.cpp" />
+    <ClCompile Include="game\infrastructure\point.cpp" />
+    <ClCompile Include="game\item.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ai_engine\engine.h" />
+    <ClInclude Include="config.h" />
     <ClInclude Include="game\agent.h" />
     <ClInclude Include="game\game.h" />
+    <ClInclude Include="game\game_field.h" />
+    <ClInclude Include="game\infrastructure\point.h" />
+    <ClInclude Include="game\item.h" />
+    <ClInclude Include="libs\glut.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,18 +1,29 @@
 #pragma once
 
+#include "game_field.h"
+
 class CGame
 {
 public:
-	static const CGame& Instance() 
+	static CGame& Instance() 
 	{ 
 		static CGame inst; 
 		return inst; 
 	}
 
 	void Run();
-private:
-	CGame() {}
+	void Stop();
 
-	void Draw();
+	void Draw() { m_gameField->DrawField(); }
+
+private:
+
+	CGame() { m_gameField = new CGameField(); }
+	~CGame() { delete m_gameField; }
+
 	void Update();
+
+	CGameField *m_gameField;
+
+	bool m_bIsWorked;
 };

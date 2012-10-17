@@ -13,23 +13,65 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\game">
+      <UniqueIdentifier>{73c3cf13-5524-4cd5-bc79-17912fef478b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\game">
+      <UniqueIdentifier>{6764edfc-7bf4-48cc-9c0d-2da179faaba6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ai_engine">
+      <UniqueIdentifier>{6c62caeb-1715-451b-853f-bee793ceb096}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ai_engine">
+      <UniqueIdentifier>{27e8e75f-aa0b-4e2a-8646-ff65b56be7ff}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="game\item.cpp">
+      <Filter>Source Files\game</Filter>
+    </ClCompile>
+    <ClCompile Include="game\game_field.cpp">
+      <Filter>Source Files\game</Filter>
+    </ClCompile>
     <ClCompile Include="game\game.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\game</Filter>
     </ClCompile>
     <ClCompile Include="game\agent.cpp">
+      <Filter>Source Files\game</Filter>
+    </ClCompile>
+    <ClCompile Include="ai_engine\engine.cpp">
+      <Filter>Source Files\ai_engine</Filter>
+    </ClCompile>
+    <ClCompile Include="game\infrastructure\point.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="game\game.h">
+    <ClInclude Include="libs\glut.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="game\game_field.h">
+      <Filter>Header Files\game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\game.h">
+      <Filter>Header Files\game</Filter>
+    </ClInclude>
     <ClInclude Include="game\agent.h">
+      <Filter>Header Files\game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\item.h">
+      <Filter>Header Files\game</Filter>
+    </ClInclude>
+    <ClInclude Include="ai_engine\engine.h">
+      <Filter>Header Files\ai_engine</Filter>
+    </ClInclude>
+    <ClInclude Include="config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game\infrastructure\point.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

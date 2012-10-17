@@ -1,6 +1,6 @@
 #include "agent.h"
 
-void CAgent::Update()
+void CAgent::Update( float fdt )
 {
 	return;
 }
