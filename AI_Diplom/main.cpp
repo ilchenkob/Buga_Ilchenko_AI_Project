@@ -38,7 +38,7 @@ void display()
  
 	glutSwapBuffers();
 
-	Sleep(100);
+	Sleep(c_iTimeSpan);
 }
 
 

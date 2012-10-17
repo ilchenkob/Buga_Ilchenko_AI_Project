@@ -7,13 +7,17 @@ using namespace global;
 
 CAgent::CAgent() 
 { 
-	m_Brain = new CAI_Engine();
+	m_Brain = new CTree_ai();
 	m_iItemsCount = 0; 
 }
 
-CAgent::CAgent( float x, float y ) 
+CAgent::CAgent( float x, float y, bool type ) 
 { 
-	m_Brain = new CAI_Engine();
+	if( type )
+		m_Brain = new CTree_ai();
+	else
+		m_Brain = new CSmart_ai();
+
 	m_Pos.x = x; 
 	m_Pos.y = y; 
 	m_iItemsCount = 0; 

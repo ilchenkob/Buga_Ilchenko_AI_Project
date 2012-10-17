@@ -7,7 +7,7 @@ class CAgent
 {
 public:
 	CAgent();
-	CAgent( float x, float y );
+	CAgent( float x, float y, bool type=true );
 	~CAgent();
 
 	void Update( float fdt, global::CellType map[c_iVisibleZone][c_iVisibleZone] );

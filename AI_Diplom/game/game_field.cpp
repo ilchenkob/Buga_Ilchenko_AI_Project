@@ -51,12 +51,23 @@ void CGameField::Update(float fdt)
 	for(; it1 != m_lAgents.end(); ++it1)
 	{
 		CellType visible_map[c_iVisibleZone][c_iVisibleZone];
+		
+		int _x = -c_iCentralPoint;
+		int _y = -c_iCentralPoint;
+		int x = (*it1)->GetPosition().x;
+		int y = (*it1)->GetPosition().y;
+
 		memset(visible_map,0,sizeof(visible_map));
 		for(int i = 0; i < c_iVisibleZone; i++)
+		{
 			for(int j = 0; j < c_iVisibleZone; j++)
 			{
-				visible_map[i][j] = (CellType)(rand()%3);
+				visible_map[i][j] = m_Map[x+_x][y+_y];
+				_y++;
 			}
+			_y = -c_iCentralPoint;
+			_x++;
+		}
 
 		(*it1)->Update(fdt, visible_map);
 	}

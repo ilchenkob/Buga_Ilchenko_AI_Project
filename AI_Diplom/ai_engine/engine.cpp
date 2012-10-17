@@ -7,7 +7,7 @@
 
 using namespace global;
 
-Direction CAI_Engine::GetDecision( CellType map[c_iVisibleZone][c_iVisibleZone] )
+Direction CTree_ai::GetDecision( CellType map[c_iVisibleZone][c_iVisibleZone] )
 {
 	CellType tMap[c_iVisibleZone][c_iVisibleZone];
 	memcpy(tMap, map, sizeof(tMap));
@@ -24,5 +24,10 @@ Direction CAI_Engine::GetDecision( CellType map[c_iVisibleZone][c_iVisibleZone] 
 	if( tMap[c_iCentralPoint][c_iCentralPoint + 1] == CT_FREE )
 		return D_UP;
 
+	return D_NONE;
+}
+
+Direction CSmart_ai::GetDecision( CellType map[c_iVisibleZone][c_iVisibleZone] )
+{
 	return D_NONE;
 }
