@@ -5,6 +5,8 @@
 #include "glut.h"
 #include <gl\GL.h>
 
+
+
 CGameField::CGameField()
 {
 	memset(m_Map, 0, sizeof(m_Map));
@@ -48,13 +50,32 @@ void CGameField::Update(float fdt)
 	std::list<CAgent*>::iterator it1 = m_lAgents.begin();
 	for(; it1 != m_lAgents.end(); ++it1)
 	{
-		(*it1)->Update(fdt);
+		CellType visible_map[c_iVisibleZone][c_iVisibleZone];
+		memset(visible_map,0,sizeof(visible_map));
+		for(int i = 0; i < c_iVisibleZone; i++)
+			for(int j = 0; j < c_iVisibleZone; j++)
+			{
+				visible_map[i][j] = (CellType)(rand()%3);
+			}
+
+		(*it1)->Update(fdt, visible_map);
 	}
 
 	std::list<CItem*>::iterator it2 = m_lItems.begin();
 	for(; it2 != m_lItems.end(); ++it2)
 	{
 		(*it2)->Update(fdt);
+	}
+
+	//Обновляем карту мира
+	memset(m_Map, 0, sizeof(m_Map));
+	for( std::list<CAgent*>::iterator it = m_lAgents.begin(); it != m_lAgents.end(); ++it )
+	{
+		m_Map[(int)(*it)->GetPosition().x/c_iCellStep][(int)(*it)->GetPosition().y/c_iCellStep] = CT_AGENT;
+	}
+	for( std::list<CItem*>::iterator it = m_lItems.begin(); it != m_lItems.end(); ++it )
+	{
+		m_Map[(int)(*it)->GetPosition().x/c_iCellStep][(int)(*it)->GetPosition().y/c_iCellStep] = CT_ITEM;
 	}
 }
 

@@ -15,6 +15,7 @@ public:
 	void Stop();
 
 	void Draw() { m_gameField->DrawField(); }
+	void Update();
 
 	bool IsWorked() const { return m_bIsWorked; }
 
@@ -26,8 +27,6 @@ private:
 		m_bIsWorked = false;
 	}
 	~CGame() { delete m_gameField; }
-
-	void Update();
 
 	CGameField *m_gameField;
 

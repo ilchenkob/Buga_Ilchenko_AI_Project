@@ -1,6 +1,7 @@
 #include <iostream>
 #include <conio.h>
 #include <time.h>
+#include <Windows.h>
 
 #include "glut.h"
 #include <gl\GL.h>
@@ -33,8 +34,11 @@ void display()
 	glTranslatef(0.f,0.0f,-1.0f);		
  
 	CGame::Instance().Draw();
+	CGame::Instance().Update();
  
 	glutSwapBuffers();
+
+	Sleep(100);
 }
 
 
