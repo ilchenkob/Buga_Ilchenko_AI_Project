@@ -2,6 +2,7 @@
 #include "point.h"
 #include "config.h"
 #include <stdlib.h>
+#include <algorithm>
 #include <list>
 
 using namespace global;
@@ -33,11 +34,15 @@ class CSmart_ai: public CAI_Engine
 {
 public:
 
-	CSmart_ai() {}
+	CSmart_ai() 
+	{
+		m_previousWay = D_NONE;
+	}
 
 	Direction GetDecision( CellType map[c_iVisibleZone][c_iVisibleZone] );
 
 private:
 
 	std::list<Point> m_Way; //путь - позиции в которых мы были
+	Direction m_previousWay;
 };
