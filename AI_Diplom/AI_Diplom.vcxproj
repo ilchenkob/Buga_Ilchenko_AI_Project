@@ -87,8 +87,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ai_engine\engine.h" />
-    <ClInclude Include="config.h" />
     <ClInclude Include="game\agent.h" />
+    <ClInclude Include="game\config.h" />
     <ClInclude Include="game\game.h" />
     <ClInclude Include="game\game_field.h" />
     <ClInclude Include="game\infrastructure\point.h" />

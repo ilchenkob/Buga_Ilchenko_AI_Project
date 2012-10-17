@@ -13,5 +13,5 @@ void CGame::Stop()
 
 void CGame::Update()
 {
-	m_gameField->Update(f_timeSpan);
+	m_gameField->Update(c_fTimeSpan);
 }

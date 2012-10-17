@@ -5,13 +5,23 @@
 class CAgent
 {
 public:
-	CAgent();
+	CAgent() { m_iItemsCount = 0; }
+	CAgent( float x, float y ) 
+	{ 
+		m_Pos.x = x; 
+		m_Pos.y = y; 
+		m_iItemsCount = 0; 
+	}
+	~CAgent();
 
 	void Update( float fdt );
 
-	~CAgent();
+	void SetPosition(double x, double y) { m_Pos.x = x; m_Pos.y = y; }
+	Point GetPosition() const { return m_Pos; }
+
+	
 private:
 	
 	Point m_Pos;       //положение на карте
-	int   m_ItemsCount;//кол-во собранных итемов
+	int   m_iItemsCount;//кол-во собранных итемов
 };

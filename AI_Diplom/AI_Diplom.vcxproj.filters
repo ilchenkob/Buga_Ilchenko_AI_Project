@@ -68,11 +68,11 @@
     <ClInclude Include="ai_engine\engine.h">
       <Filter>Header Files\ai_engine</Filter>
     </ClInclude>
-    <ClInclude Include="config.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="game\infrastructure\point.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game\config.h">
+      <Filter>Header Files\game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

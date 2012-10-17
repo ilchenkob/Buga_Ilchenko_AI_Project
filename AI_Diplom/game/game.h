@@ -16,9 +16,15 @@ public:
 
 	void Draw() { m_gameField->DrawField(); }
 
+	bool IsWorked() const { return m_bIsWorked; }
+
 private:
 
-	CGame() { m_gameField = new CGameField(); }
+	CGame() 
+	{ 
+		m_gameField = new CGameField(); 
+		m_bIsWorked = false;
+	}
 	~CGame() { delete m_gameField; }
 
 	void Update();

@@ -1,18 +1,17 @@
 #include <iostream>
 #include <conio.h>
+#include <time.h>
 
 #include "glut.h"
 #include <gl\GL.h>
 
 #include "game\config.h"
-
 #include "game\game.h"
 
 using namespace std;
 
 #define KEY_ESCAPE 27
-
-
+#define KEY_SPACE 32
 
 typedef struct {
     int width;
@@ -31,7 +30,7 @@ void display()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);		     // Clear Screen and Depth Buffer
 	glLoadIdentity();
-	glTranslatef(0.0f,0.0f,-3.0f);			
+	glTranslatef(0.f,0.0f,-1.0f);		
  
 	CGame::Instance().Draw();
  
@@ -46,7 +45,7 @@ void initialize ()
     glMatrixMode(GL_PROJECTION);												// set matrix mode
     glLoadIdentity();															// reset projection matrix
     GLfloat aspect = (GLfloat) win.width / win.height;
-	gluPerspective(win.field_of_view_angle, aspect, win.z_near, win.z_far);		// set up a perspective projection matrix
+	glOrtho(0,win.width,0,win.height,1,500);
     glMatrixMode(GL_MODELVIEW);													// specify which matrix is the current matrix
     glShadeModel( GL_SMOOTH );
     glClearDepth( 1.0f );														// specify the clear value for the depth buffer
@@ -61,9 +60,22 @@ void keyboard ( unsigned char key, int mousePositionX, int mousePositionY )
 { 
   switch ( key ) 
   {
-    case KEY_ESCAPE:        
+    case KEY_ESCAPE:  
+		printf("Exit from programm\n");
       exit ( 0 );   
       break;      
+	case KEY_SPACE:  
+		if( CGame::Instance().IsWorked() )
+		{
+			CGame::Instance().Stop();
+			printf("Game status: Stopped\n");
+		}
+		else
+		{
+			CGame::Instance().Run();
+			printf("Game status: Runned\n");
+		}
+      break; 
 
     default:      
       break;
@@ -72,8 +84,10 @@ void keyboard ( unsigned char key, int mousePositionX, int mousePositionY )
 
 void main(int argc, char **argv) 
 {
-	win.width = 640;
-	win.height = 480;
+	srand ( time(NULL) );
+
+	win.width = c_iFieldWidth * c_iCellStep;
+	win.height = c_iFieldHeight * c_iCellStep;
 	win.title = "Game window";
 	win.field_of_view_angle = 45;
 	win.z_near = 1.0f;
@@ -88,5 +102,7 @@ void main(int argc, char **argv)
 	glutIdleFunc( display );									// register Idle Function
     glutKeyboardFunc( keyboard );								// register Keyboard Handler
 	initialize();
+	printf("OpenGl Init: Ok\n");
+	printf("Press Esc for Quite\n");
 	glutMainLoop();												// run GLUT mainloop
 }
