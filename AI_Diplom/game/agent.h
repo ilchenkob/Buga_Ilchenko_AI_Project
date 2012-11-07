@@ -1,25 +1,30 @@
 #pragma once
 #include "config.h"
-#include "..\ai_engine\engine.h"
+#include "engine.h"
 #include "infrastructure\point.h"
 
-class CAgent
+class CAgent: public AbstractAgent
 {
 public:
 	CAgent();
 	CAgent( float x, float y, bool type=true );
 	~CAgent();
 
-	void Update( float fdt, global::CellType map[c_iVisibleZone][c_iVisibleZone] );
+	void Update( float fdt, global::CellType map[c_iVisibleZone][c_iVisibleZone], int x, int y );
 
 	void SetPosition(double x, double y) { m_Pos.x = x; m_Pos.y = y; }
 	Point GetPosition() const { return m_Pos; }
 
+	bool ReadyToGo() { return true; };
+
+	global::CellType** GetVisibleMap() const { return m_VisibleMap; };
 	
 private:
 
-	CAI_Engine *m_Brain;
+	CAI_Engine *m_ptrBrain;
 
-	Point m_Pos;       //положение на карте
+	global::CellType** m_VisibleMap;
+
+	Point m_Pos;        //положение на карте
 	int   m_iItemsCount;//кол-во собранных итемов
 };

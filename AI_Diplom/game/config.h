@@ -1,4 +1,5 @@
 #pragma once
+
 const int   c_iTimeSpan     = 200;
 const int   c_iFieldWidth   = 64;
 const int   c_iFieldHeight  = 48;

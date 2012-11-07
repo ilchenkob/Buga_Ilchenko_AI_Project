@@ -13,5 +13,6 @@ void CGame::Stop()
 
 void CGame::Update()
 {
-	m_gameField->Update(c_iTimeSpan);
+	if( m_bIsWorked )
+		m_gameField->Update(c_iTimeSpan);
 }

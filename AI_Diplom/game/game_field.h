@@ -20,6 +20,8 @@ public:
 
 	void DrawField();
 
+	void GenItems();
+
 private:
 
 	void DrawItems();

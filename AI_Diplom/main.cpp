@@ -4,7 +4,7 @@
 #include <Windows.h>
 
 #include "glut.h"
-#include <gl\GL.h>
+#include <gl\GL.h>e
 
 #include "game\config.h"
 #include "game\game.h"
@@ -80,6 +80,10 @@ void keyboard ( unsigned char key, int mousePositionX, int mousePositionY )
 			printf("Game status: Runned\n");
 		}
       break; 
+	case 'g':
+		CGame::Instance().GenItems();
+		printf("Generated 10 items\n");
+		break;
 
     default:      
       break;

@@ -6,38 +6,23 @@
 
 using namespace global;
 
+class AbstractAgent
+{
+public:
+
+	virtual bool ReadyToGo() = 0;
+
+};
+
 class CAI_Engine
 {
 public:
 
 	CAI_Engine() {}
 
-	virtual Direction GetDecision( CellType map[c_iVisibleZone][c_iVisibleZone] ) = 0;
-
-};
-
-class CTree_ai: public CAI_Engine
-{
-public:
-
-	CTree_ai() {}
-
-	Direction GetDecision( CellType map[c_iVisibleZone][c_iVisibleZone] );
+	void SetAgent( AbstractAgent* ptr ) { m_ptrAgent = ptr; };
 
 private:
 
-	std::list<Point> m_Way; //путь - позиции в которых мы были
-};
-
-class CSmart_ai: public CAI_Engine
-{
-public:
-
-	CSmart_ai() {}
-
-	Direction GetDecision( CellType map[c_iVisibleZone][c_iVisibleZone] );
-
-private:
-
-	std::list<Point> m_Way; //путь - позиции в которых мы были
+	AbstractAgent *m_ptrAgent;
 };

@@ -19,12 +19,14 @@ public:
 
 	bool IsWorked() const { return m_bIsWorked; }
 
+	void GenItems() { m_gameField->GenItems(); }
+
 private:
 
 	CGame() 
 	{ 
 		m_gameField = new CGameField(); 
-		m_bIsWorked = false;
+		m_bIsWorked = true;
 	}
 	~CGame() { delete m_gameField; }
 
