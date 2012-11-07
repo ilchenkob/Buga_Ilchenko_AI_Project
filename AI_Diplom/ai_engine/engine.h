@@ -11,6 +11,10 @@ class AbstractAgent
 public:
 
 	virtual bool ReadyToGo() = 0;
+	
+	virtual Point GetPosition() = 0;
+
+	virtual global::CellType** GetVisibleMap() = 0;
 
 };
 
@@ -22,7 +26,15 @@ public:
 
 	void SetAgent( AbstractAgent* ptr ) { m_ptrAgent = ptr; };
 
+	Direction MakeDesision();
+
 private:
 
 	AbstractAgent *m_ptrAgent;
+
+	int borderPositionRate(Point position, CellType** map);
+
+	int resourcesPositionRate(Point position, CellType** map);
+
+	int enemiesPositionRate(Point position, CellType** map);
 };
