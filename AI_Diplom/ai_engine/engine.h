@@ -11,11 +11,13 @@ class AbstractAgent
 {
 public:
 
-	virtual bool ReadyToGo() = 0;
-	
-	virtual Point GetPosition() = 0;
+	AbstractAgent() {}
 
-	virtual global::CellType** GetVisibleMap() = 0;
+	virtual bool ReadyToGo() const = 0;
+	
+	virtual Point GetPosition() const = 0;
+
+	virtual global::CellType** GetVisibleMap() const = 0;
 
 };
 

@@ -1,5 +1,7 @@
 #include "engine.h"
 
+#include "../game/game.h"
+
 #include "point.h"
 #include "config.h"
 #include <stdlib.h>
@@ -110,6 +112,10 @@ CellType** CAI_Engine::visibleMap(Point position)
 	int y = position.y;
 
 	int row, coll;
+	global::CellType** global_map;
+	CGame::Instance().GetGameField()->GetMap( global_map );
+
+	global_map;
 
 	memset(visible_map,0,sizeof(visible_map));
 	for(int i = 0; i < c_iVisibleZone; i++)
@@ -121,7 +127,7 @@ CellType** CAI_Engine::visibleMap(Point position)
 			if( row < 0 || row >= c_iFieldWidth ) row = x;
 			if( coll < 0 || coll >= c_iFieldHeight ) coll = y;
 
-			visible_map[i][j] = m_Map[row][coll];
+			visible_map[i][j] = global_map[row][coll];
 			_y++;
 		}
 		_y = -c_iCentralPoint;

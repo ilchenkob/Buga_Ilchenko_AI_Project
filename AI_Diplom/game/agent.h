@@ -6,6 +6,7 @@
 class CAgent: public AbstractAgent
 {
 public:
+
 	CAgent();
 	CAgent( float x, float y, bool type=true );
 	~CAgent();
@@ -15,9 +16,9 @@ public:
 	void SetPosition(double x, double y) { m_Pos.x = x; m_Pos.y = y; }
 	Point GetPosition() const { return m_Pos; }
 
-	bool ReadyToGo() { return true; };
+	bool ReadyToGo() const { return true; }
 
-	global::CellType** GetVisibleMap() const { return m_VisibleMap; };
+	global::CellType** GetVisibleMap() const { return m_VisibleMap; }
 	
 private:
 
