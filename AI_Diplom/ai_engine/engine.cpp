@@ -131,16 +131,18 @@ CellType** CAI_Engine::visibleMap(Point position)
 
 	int _x = -c_iCentralPoint;
 	int _y = -c_iCentralPoint;
-	int x = position.x;
-	int y = position.y;
+	int x = position.x/c_iCellStep;
+	int y = position.y/c_iCellStep;
 
 	int row, coll;
-	global::CellType** global_map;
+	global::CellType** global_map = new global::CellType*[c_iFieldWidth];
+	
+	for( int i = 0; i < c_iFieldWidth; i++)
+		global_map[i] = new global::CellType[c_iFieldHeight];
+
 	CGame::Instance().GetGameField()->GetMap( global_map );
 
-	global_map;
-
-	memset(visible_map,0,sizeof(visible_map));
+	//memset(visible_map,0,sizeof(visible_map));
 	for(int i = 0; i < c_iVisibleZone; i++)
 	{
 		for(int j = 0; j < c_iVisibleZone; j++)

@@ -28,7 +28,10 @@ public:
 
 	CAI_Engine() {}
 
-	void SetAgent( AbstractAgent* ptr ) { m_ptrAgent = ptr; };
+	void SetAgent( AbstractAgent* ptr ) 
+	{
+		m_ptrAgent = ptr; 
+	}
 
 	Direction MakeDesision();
 

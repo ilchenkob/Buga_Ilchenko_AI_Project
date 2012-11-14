@@ -22,9 +22,16 @@ public:
 
 	void GenItems();
 
-	void GetMap( CellType** buff )
+	void GetMap( global::CellType** buff )
 	{
-		memcpy(buff,m_Map,sizeof(m_Map));
+		//memcpy(buff,m_Map,sizeof(m_Map));
+		for(int i = 0; i < c_iFieldWidth; i++)
+		{
+			for(int j = 0; j < c_iFieldHeight; j++)
+			{
+				buff[i][j] = m_Map[i][j];
+			}
+		}
 	}
 	
 private:
