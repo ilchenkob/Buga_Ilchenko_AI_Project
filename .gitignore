@@ -4,3 +4,6 @@
 /*.opensdf
 /*.sdf
 /*.suo
+/ipch
+/.nuget
+/AI_Diplom.sdf
