@@ -1,5 +1,7 @@
 #include "engine.h"
 
+#include "../game/game.h"
+
 #include "point.h"
 #include "config.h"
 #include <stdlib.h>
@@ -12,20 +14,43 @@ Direction CAI_Engine::MakeDesision()
 	CellType** visibleMap = m_ptrAgent->GetVisibleMap();
 	Point agentPosition = m_ptrAgent->GetPosition();
 
+
 	std::map<Direction, int> values;
 
 	values.insert(std::make_pair(D_NONE, calculatePosition(agentPosition, visibleMap)));
 
+	Point tempAgent(agentPosition.x, agentPosition.y - 1);
+	values.insert(std::make_pair(D_UP, calculatePosition(tempAgent, CAI_Engine::visibleMap(tempAgent))));
+	
+	tempAgent.x = agentPosition.x;
+	tempAgent.y = agentPosition.y + 1;
+	values.insert(std::make_pair(D_DOWN, calculatePosition(tempAgent, CAI_Engine::visibleMap(tempAgent))));
 
-	int currentMax = 0;
+	tempAgent.x = agentPosition.x - 1;
+	tempAgent.y = agentPosition.y;
+	values.insert(std::make_pair(D_LEFT, calculatePosition(tempAgent, CAI_Engine::visibleMap(tempAgent))));
+
+	tempAgent.x = agentPosition.x + 1;
+	tempAgent.y = agentPosition.y;
+	values.insert(std::make_pair(D_RIGHT, calculatePosition(tempAgent, CAI_Engine::visibleMap(tempAgent))));
+	
 	Direction direction = D_NONE;
-	for(auto it = values.cbegin(); it != values.cend(); ++it ) 
+
+	do
 	{
-		if (it ->second > currentMax) {
-			direction = it->first;
-			currentMax = it->second;
+		values[direction] = 0;
+		int currentMax = 0;
+		
+		for(auto it = values.cbegin(); it != values.cend(); ++it ) 
+		{
+			if (it ->second > currentMax) {
+				direction = it->first;
+				currentMax = it->second;
+			}
 		}
+
 	}
+	while(!m_ptrAgent->ReadyToGo(direction));
 
 	return direction;
 }
@@ -34,8 +59,8 @@ int CAI_Engine::borderPositionRate(Point position, CellType** map)
 {
 	int result = 0;
 	
-	for(int i=position.x - 1; i<position.x + 1; i++)
-		for(int j=position.y - 1; j<position.y + 1; j++)
+	for(int i=-1; i < 1; i++)
+		for(int j=-1; j < 1; j++)
 		{
 			if(i < 0 || j < 0) continue;
 
@@ -52,8 +77,8 @@ int CAI_Engine::resourcesPositionRate(Point position, CellType** map)
 {
 	int result = 0;
 
-	for(int i=position.x - 2; i<position.x + 2; i++)
-		for(int j=position.y - 2; j<position.y + 2; j++)
+	for(int i=-2; i < 2; i++)
+		for(int j=-2; j < 2; j++)
 		{
 			if(i < 0 || j < 0) continue;
 
@@ -76,8 +101,8 @@ int CAI_Engine::enemiesPositionRate(Point position, CellType** map)
 {
 	int result = 0;
 
-	for(int i=position.x - 2; i<position.x + 2; i++)
-		for(int j=position.y - 2; j<position.y + 2; j++)
+	for(int i=-2; i < 2; i++)
+		for(int j=-2; j < 2; j++)
 		{
 			if(i < 0 || j < 0 || i == j) continue;
 
@@ -110,6 +135,10 @@ CellType** CAI_Engine::visibleMap(Point position)
 	int y = position.y;
 
 	int row, coll;
+	global::CellType** global_map;
+	CGame::Instance().GetGameField()->GetMap( global_map );
+
+	global_map;
 
 	memset(visible_map,0,sizeof(visible_map));
 	for(int i = 0; i < c_iVisibleZone; i++)
@@ -121,7 +150,7 @@ CellType** CAI_Engine::visibleMap(Point position)
 			if( row < 0 || row >= c_iFieldWidth ) row = x;
 			if( coll < 0 || coll >= c_iFieldHeight ) coll = y;
 
-			visible_map[i][j] = m_Map[row][coll];
+			visible_map[i][j] = global_map[row][coll];
 			_y++;
 		}
 		_y = -c_iCentralPoint;

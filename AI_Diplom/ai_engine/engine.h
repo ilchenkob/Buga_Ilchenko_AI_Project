@@ -2,6 +2,7 @@
 #include "point.h"
 #include "config.h"
 #include <stdlib.h>
+#include <algorithm>
 #include <map>
 #include <list>
 
@@ -11,11 +12,13 @@ class AbstractAgent
 {
 public:
 
-	virtual bool ReadyToGo() = 0;
-	
-	virtual Point GetPosition() = 0;
+	AbstractAgent() {}
 
-	virtual global::CellType** GetVisibleMap() = 0;
+	virtual bool ReadyToGo(Direction direction) const = 0;
+	
+	virtual Point GetPosition() const = 0;
+
+	virtual global::CellType** GetVisibleMap() const = 0;
 
 };
 

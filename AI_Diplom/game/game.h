@@ -21,6 +21,8 @@ public:
 
 	void GenItems() { m_gameField->GenItems(); }
 
+	CGameField* GetGameField() { return m_gameField; }
+
 private:
 
 	CGame() 

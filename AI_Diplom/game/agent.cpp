@@ -38,4 +38,23 @@ CAgent::~CAgent()
 void CAgent::Update( float fdt, CellType map[c_iVisibleZone][c_iVisibleZone], int x, int y )
 {
 	memcpy(m_VisibleMap, map, sizeof(map));
+	Direction newDirection = m_ptrBrain->MakeDesision();
+
+	switch(newDirection)
+	{
+	case D_UP:
+		m_Pos.y - 1;
+		break;
+	case D_DOWN:
+		m_Pos.y + 1;
+		break;
+	case D_LEFT:
+		m_Pos.x - 1;
+		break;
+	case D_RIGHT:
+		m_Pos.x + 1;
+		break;
+	default:
+		break;
+	}
 }
